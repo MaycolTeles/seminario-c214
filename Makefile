@@ -32,11 +32,14 @@ lint:
 
 # run the tests using pytest
 tests:
-	cd app/ && pytest -vv
+	pytest -vv
+
+# run lint and tests
+deploy: lint tests
 
 # run all tests and generate coverage report
-all-tests: lint
-	cd app/ && pytest -vv --cov=. --cov-report=html --cov-config=.coveragerc
+coverage:
+	pytest -vv --cov=. --cov-report=html --cov-config=.coveragerc
 
 # run the code
 run:

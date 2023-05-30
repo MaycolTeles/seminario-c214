@@ -1,7 +1,9 @@
 """
 """
 
-from src.calculator import Calculator
+from src.calculator import Calculator, InvalidValueTypeException
+
+import pytest
 
 
 def test_method_add_should_add_two_numbers():
@@ -25,4 +27,14 @@ def test_method_mult_should_multiply_two_numbers():
 def test_method_div_should_divide_two_numbers():
     calculator = Calculator()
 
-    assert calculator.div(1, 1) == 1
+    actual = calculator.div(1, 1)
+    expected = 1
+
+    assert actual == expected
+
+
+def test_method_div_should_raise_exception_when_divided_by_zero():
+    calculator = Calculator()
+
+    with pytest.raises(InvalidValueTypeException):
+        calculator.div(1, 0)

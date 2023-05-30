@@ -20,7 +20,8 @@ class InvalidValueTypeException(Exception):
         value = self.value
         value_type = type(value)
 
-        return f'Type of value "{value}" is "{value_type}" but it should be "float".'
+        string = f'Type of value "{value}" is "{value_type}" but it should be "float".'
+        return string
 
 
 def validate_arguments(
@@ -86,38 +87,3 @@ class Calculator:
         #     return 1
 
         return value_1 ** value_2
-
-
-def main() -> None:
-    """
-    """
-    calculator = Calculator()
-
-    res = calculator.add(1, 3)
-    print(res)
-
-    res = calculator.sub(10, 3)
-    print(res)
-
-    res = calculator.mult(2, 3)
-    print(res)
-
-    res = calculator.div(10, 2)
-    print(res)
-
-    res = calculator.expo(2, 3)
-    print(res)
-
-    # UNCOMMENT LINES BELOW TO CHECK THE EXCEPTIONS
-
-    # WRONG TYPE
-    # calculator.add("1", "3")
-
-    # DIVISON BY ZERO
-    # calculator.div(10, 0)
-
-
-if __name__ == "__main__":
-    """
-    """
-    main()
