@@ -27,12 +27,13 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -vv --cov=. --cov-report=html --cov-config=.coveragerc
+        ls
 
     - name: Upload test report
       uses: actions/upload-artifact@v2
       with:
         name: test-report
-        path: app/htmlcov/
+        path: app/htmlcov
 
   lint:
     runs-on: ubuntu-latest
