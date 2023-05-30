@@ -1,7 +1,7 @@
 """
 """
 
-from app.src.calculator import Calculator
+from src.calculator import Calculator
 
 
 def test_method_add_should_add_two_numbers():
