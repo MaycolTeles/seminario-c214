@@ -22,6 +22,7 @@ clean-test:
 	@rm -fr .tox/
 	@rm -f .coverage
 	@rm -fr htmlcov/
+	@rm -fr .pytest_cache/
 
 # lint the code using pylint and flake8
 lint:
@@ -31,11 +32,11 @@ lint:
 
 # run the tests using pytest
 tests:
-	python -m pytest -vv
+	cd app/ && pytest -vv
 
 # run all tests and generate coverage report
 all-tests: lint
-	python -m pytest -vv --cov=. --cov-report=html --cov-config=.coveragerc
+	cd app/ && pytest -vv --cov=. --cov-report=html --cov-config=.coveragerc
 
 # run the code
 run:
