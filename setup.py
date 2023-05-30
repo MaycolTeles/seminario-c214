@@ -8,6 +8,7 @@ with open('README.md') as file:
 setup(
     name='calculator',
     version='0.0.1',
+    package_dir={'': 'app'},
     packages=find_packages(where='app'),
     description='A calculator package',
     long_description=readme,
