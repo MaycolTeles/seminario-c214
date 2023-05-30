@@ -6,6 +6,7 @@ Seminário de C214
 * [Requirements](#requirements)
 * [Setup and Installation](#setup-installation)
 * [How to Test](#how-to-test)
+* [Documentation](#documentation)
 
 *********************
 ##  Requirements :pencil: <a name="requirements"></a>
@@ -105,3 +106,12 @@ or (using the Makefile):
 ```
 make all-tests
 ```
+
+##  Documentation :notebook: <a name="documentation"></a>
+
+Some cool commands provided by pytest are listed below:
+
+* `pytest -vv`: runs all tests and shows a more verbose output
+* `pytest -x`: stops the test run after the first failure
+* `pytest -k "test_name"`: to run only the tests that match the given string expression (substring)
+* `pytest --cov=. --cov-report=html --cov-config=.coveragerc`: to generate the test coverage report, in HTML format and using the .coveragerc file as configuration
