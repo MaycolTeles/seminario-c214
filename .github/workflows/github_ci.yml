@@ -30,10 +30,10 @@ jobs:
         ls
 
     - name: Upload test report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: test-report
-        path: app/htmlcov
+        name: calculator-test-report
+        path: htmlcov/
 
   lint:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
         python -m build
 
     - name: Upload Python Package to Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: calculator
+        name: calculator-build
         path: dist/
