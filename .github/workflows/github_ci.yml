@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: "Check out the repo"
     - uses: actions/checkout@v3
+
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
@@ -29,14 +31,16 @@ jobs:
     - name: Upload test report
       uses: actions/upload-artifact@v2
       with:
-        name: pytest-report
-        path: test-report.html
+        name: test-report
+        path: src/htmlcov/
 
   lint:
     runs-on: ubuntu-latest
 
     steps:
+    - name: "Check out the repo"
     - uses: actions/checkout@v3
+
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
@@ -59,7 +63,9 @@ jobs:
     needs: test
 
     steps:
+    - name: "Check out the repo"
     - uses: actions/checkout@v3
+
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
@@ -72,7 +78,7 @@ jobs:
 
     - name: Build Python Package
       run: |
-        python setup.py sdist bdist_wheel
+        python setup.py bdist_wheel sdist
 
     - name: Upload Python Package to Artifacts
       uses: actions/upload-artifact@v2
