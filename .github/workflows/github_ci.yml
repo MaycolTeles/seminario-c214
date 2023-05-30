@@ -1,0 +1,81 @@
+name: Pipeline for Python Project
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Test with pytest
+      run: |
+        pytest --junitxml=test-report.xml --html=test-report.html --self-contained-html
+
+    - name: Upload test report
+      uses: actions/upload-artifact@v2
+      with:
+        name: pytest-report
+        path: test-report.html
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 app/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 app/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+  build:
+    runs-on: ubuntu-latest
+    depends-on: test
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build Python Package
+      run: |
+        python setup.py sdist bdist_wheel
+
+    - name: Upload Python Package to Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: calculator-0.0.1.tar.gz
+        path: dist/
