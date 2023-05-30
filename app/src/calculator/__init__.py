@@ -1,9 +1,8 @@
 """"""
 
-from .calculator import Calculator, InvalidValueTypeException
+from .calculator import Calculator
 
 
 __all__ = [
     "Calculator",
-    "InvalidValueTypeException",
 ]

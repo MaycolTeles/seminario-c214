@@ -1,7 +1,7 @@
 """
 """
 
-from src.calculator import Calculator, InvalidValueTypeException
+from src.calculator import Calculator
 
 import pytest
 
@@ -36,5 +36,14 @@ def test_method_div_should_divide_two_numbers():
 def test_method_div_should_raise_exception_when_divided_by_zero():
     calculator = Calculator()
 
-    with pytest.raises(InvalidValueTypeException):
+    with pytest.raises(ZeroDivisionError):
         calculator.div(1, 0)
+
+
+# def test_method_div_should_break_because_test_is_wrong():
+#     calculator = Calculator()
+
+#     actual = calculator.div(1, 1)
+#     expected = 2
+
+#     assert actual == expected, "This test is wrong!"
